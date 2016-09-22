@@ -12,14 +12,16 @@ group :development do
   gem 'sqlite3'
 end
  
+gem 'bootstrap-sass' 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'bootstrap'
+gem 'bootstrap', '~> 4.0.0.alpha4'
 gem 'figaro'
 gem 'pry'
+
 
 group :development, :test do
   gem 'byebug'
