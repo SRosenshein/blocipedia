@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :user do
-    email 'person@example.com'
-    password 'helloworld'
-    password_confirmation 'helloworld'
+    email 
+    password 
+    password_confirmation 
     
     trait :admin do
       role 'admin'
