@@ -1,4 +1,6 @@
 class WikisController < ApplicationController
+    skip_before_filter :authenticate_user!, only: [:index, :show, :edit, :update]
+    
     def index
         @wikis = Wiki.all
     end
@@ -13,6 +15,7 @@ class WikisController < ApplicationController
     
     def create
         @wiki = Wiki.create(wiki_params)
+        @wiki.user = current_user
         
         if @wiki.save
             flash[:notice] = "Wiki was saved."
@@ -29,6 +32,7 @@ class WikisController < ApplicationController
     
     def update
         @wiki = Wiki.find(params[:id])
+        authorize @wiki
         @wiki.assign_attributes(wiki_params)
         
         if @wiki.save
