@@ -1,23 +1,23 @@
 #Create Users
+userArray = []
 25.times do
     pw = Faker::Internet.password(6)
-    User.create!(
+    userArray << {
         email: Faker::Internet.email,
         password: pw,
-        password_confirmation: pw)
+        password_confirmation: pw}
 end
-users = User.all
+users = User.create!(userArray)
 
 #Create Wikis
+wikiArray = []
 30.times do
-    wiki = Wiki.create!(
-        title: Faker::Beer.name,
-        body: Faker::ChuckNorris.fact,
-        user: users.sample)
-        
-    wiki.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+    wikiArray << {
+    title: Faker::Beer.name,
+    body: Faker::ChuckNorris.fact,
+    user: users.sample}
 end
-wikis = Wiki.all
+wikis = Wiki.create!(wikiArray)
 
 # Create a standard member
 member = User.create!(
