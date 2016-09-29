@@ -1,8 +1,9 @@
 class WikisController < ApplicationController
-    skip_before_filter :authenticate_user!, only: [:index, :show, :edit, :update]
+    skip_before_filter :authenticate_user!, only: [:index, :show]
+    after_action :verify_policy_scoped, only: :index
     
     def index
-        @wikis = Wiki.all
+        @wikis = policy_scope(Wiki)
     end
     
     def show
@@ -46,6 +47,7 @@ class WikisController < ApplicationController
     
     def destroy
         @wiki = Wiki.find(params[:id])
+        authorize @wiki
         
         if @wiki.destroy
             flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."

@@ -15,6 +15,7 @@ wikiArray = []
     wikiArray << {
     title: Faker::Beer.name,
     body: Faker::ChuckNorris.fact,
+    private: false,
     user: users.sample}
 end
 wikis = Wiki.create!(wikiArray)

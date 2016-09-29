@@ -1,6 +1,7 @@
 <h1>
     <%= @wiki.title %> <br>
     <small>
+        <% if @wiki.private %><em>Private wiki</em><br><% end %>
         submitted <%= time_ago_in_words(@wiki.created_at) %> ago
     </small>
     <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-primary' %>
