@@ -8,10 +8,10 @@ class WikiPolicy < ApplicationPolicy
         end
         
         def resolve
-            if user.nil? || user.member?
-                scope.where(private: false)
+            if @user.nil? || @user.member?
+                @scope.where(private: false)
             else
-               scope.all
+                @scope.all
             end
         end
     end
