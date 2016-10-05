@@ -1,4 +1,8 @@
-<h1>All Collaborators for <%= Wiki.find(params[:wiki_id]).title %> Wiki </h1>
+<h1>All Collaborators for <%= @wiki.title %> Wiki </h1>
+
+<ul><%= render partial: 'wikis/collaborator', collection: @wiki.collaborate_users %></ul>
+
+<p><%= link_to "Return to Wiki", wiki_path(@wiki), class: 'btn btn-success' %></p>
 
 
 

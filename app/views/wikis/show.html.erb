@@ -11,7 +11,8 @@
 <p>Created by: <%= @wiki.user.email %></p>
 <div>
     <% if @wiki.private %>
-        <p><%= link_to "Add collaborator", new_wiki_collaborator_path(@wiki), class: 'btn btn-primary' %></p>
-        <p><%= render partial: 'wikis/collaborator', collection: @wiki.collaborate_users %></p>
+        <h4>Collaborators:</h4>
+        <p><%= link_to "Add/Remove collaborators", new_wiki_collaborator_path(@wiki), class: 'btn btn-default' %></p>
+        <ul><%= render partial: 'wikis/collaborator', collection: @wiki.collaborate_users %></ul>
     <% end %>
 </div>
