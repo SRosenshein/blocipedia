@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show]
   
-  resources :wikis
+  resources :wikis do
+    resources :collaborators, only: [:index, :new, :create, :destroy]
+  end
   
   
   get 'about' => 'welcome#about'

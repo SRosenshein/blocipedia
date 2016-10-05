@@ -8,10 +8,13 @@ class WikiPolicy < ApplicationPolicy
         end
         
         def resolve
-            if @user.nil? || @user.member?
-                @scope.where(private: false)
-            else
-                @scope.all
+            wikis = @scope.all
+            if @user.nil?
+                wikis.select{|wiki| !wiki.private?}
+            elsif @user.role == "admin" || @user.role == "premium"
+                wikis
+            else #standard user and/or wiki collaborator
+                wikis.select{|wiki| !wiki.private? || wiki.collaborate_users.include?(@user)}
             end
         end
     end

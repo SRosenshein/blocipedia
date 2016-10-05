@@ -4,8 +4,14 @@
         <% if @wiki.private %><em>Private wiki</em><br><% end %>
         submitted <%= time_ago_in_words(@wiki.created_at) %> ago
     </small>
-    <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-primary' %>
+    <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-success' %>
     <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %>
 </h1>
 <p><%= markdown(@wiki.body) %> </p>
 <p>Created by: <%= @wiki.user.email %></p>
+<div>
+    <% if @wiki.private %>
+        <p><%= link_to "Add collaborator", new_wiki_collaborator_path(@wiki), class: 'btn btn-primary' %></p>
+        <p><%= render partial: 'wikis/collaborator', collection: @wiki.collaborate_users %></p>
+    <% end %>
+</div>

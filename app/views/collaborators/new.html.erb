@@ -1,0 +1,17 @@
+<h2>Add collaborators to <%= @wiki.title %>:</h2>
+
+<table class="users_table">
+    <tr>
+        <th>User</th>
+        <th>Give Access</th>
+    </tr>
+    <%= form_for(Collaborator, url: wiki_collaborators_path(@wiki), method: :post) do |f| %>
+        <% User.all.each do |user| %>
+            <tr>
+                <td><%= user.email %></td>
+                <td><%= f.check_box :wiki, :collaborators, @wiki.collaborate_users.include?(user), {multiple: true} %></td>
+            </tr>
+        <% end %>
+        <%= f.submit "Allow access", class: 'btn btn-success' %>
+    <% end %>
+</table>
