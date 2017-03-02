@@ -16,7 +16,8 @@ Blocipedia is a Wikipedia-replica web app built on the Ruby on Rails framework.
 #### Key RubyGems used:
 * bootstrap (css styling)
 * stripe (payment management)
-* devise (user authentication + authorization)
+* devise (user authentication)
+* pundit (user authorization)
 * redcarpet (markdown conversion)
 * rspec-rails (TDD)
 * faker (development data generation)
